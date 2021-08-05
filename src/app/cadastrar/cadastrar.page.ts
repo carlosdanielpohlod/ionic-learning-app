@@ -34,7 +34,7 @@ export class CadastrarPage implements OnInit {
         
       
     }else{
-      this.presentAlert("menssagem",'Erro',"preencha os campos")
+      this.presentAlert("Erro ao salvar contato",'',"preencha todos os campos")
     }
   }
 
