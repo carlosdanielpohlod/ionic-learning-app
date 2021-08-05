@@ -9,47 +9,48 @@
 
 <ion-content>
   <!-- List of Text Items -->
+ 
+  <ion-list>
+    <ion-item-group *ngFor= "let contato of contatos">
+      
+  
+        <ion-item>
+          <ion-col size="3">
+            <ion-avatar>
+              <img style="width:50px; height:50px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoG3kdyXjfH5Gc_RET0AcADVWUoZXQ4WestA&usqp=CAU">
+            </ion-avatar> 
+          </ion-col>
+          <ion-col size="3">
+            {{ contato.getNome()}}
+          </ion-col>
+
+          <ion-col size="2">
+            <ion-button color="secondary">Ver</ion-button>
+          </ion-col>
+
+          <ion-col size="3">
+            <ion-button color="danger">Deletar</ion-button>
+          </ion-col>
+        </ion-item>
+  
+      
+        <ion-item>
+          <ion-col>
+          
+            <b>
+              <ion-icon slot="end" name="call"></ion-icon> 
+              Telefone: 
+            </b>
+            {{contato.getTelefone()}}
+          </ion-col>
+        </ion-item>
+    
+    </ion-item-group>
+  </ion-list>
+  
   <ion-fab vertical="center" horizontal="end" slot="fixed">
     <ion-fab-button (click)="irParaCadastrarPage()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-<ion-list>
-  <ion-item-group *ngFor= "let contato of contatos">
-    
- 
-      <ion-item>
-        <ion-col size="3">
-          <ion-avatar>
-            <img style="width:50px; height:50px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoG3kdyXjfH5Gc_RET0AcADVWUoZXQ4WestA&usqp=CAU">
-          </ion-avatar> 
-        </ion-col>
-        <ion-col size="3">
-          {{ contato.getNome()}}
-        </ion-col>
-
-        <ion-col size="2">
-          <ion-button color="secondary">Ver</ion-button>
-        </ion-col>
-
-        <ion-col size="3">
-          <ion-button color="danger">Deletar</ion-button>
-        </ion-col>
-      </ion-item>
- 
-    
-      <ion-item>
-        <ion-col>
-        
-          <b>
-            <ion-icon slot="end" name="call"></ion-icon> 
-            Telefone: 
-          </b>
-          {{contato.getTelefone()}}
-        </ion-col>
-      </ion-item>
-   
-  </ion-item-group>
-</ion-list>
-
 </ion-content>

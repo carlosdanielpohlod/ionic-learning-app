@@ -47,7 +47,9 @@ export class CadastrarPage implements OnInit {
       return true
     }
   }
-
+  private voltar() :void{
+    this.router.navigate(['home'])
+  }
   async presentAlert(header:string, subHeader:string, message:string) {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
