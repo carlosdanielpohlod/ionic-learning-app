@@ -11,10 +11,10 @@ import { ContatoService } from '../services/contato.service';
   styleUrls: ['./cadastrar.page.scss'],
 })
 export class CadastrarPage implements OnInit {
-  private nome: string;
-    private telefone: number;
-    private dataNascimento : string;
-    private sexo : string;
+  public nome: string;
+    public telefone: number;
+    public dataNascimento : string;
+    public sexo : string;
   constructor(
     
     public alertController : AlertController,
@@ -39,7 +39,7 @@ export class CadastrarPage implements OnInit {
   }
 
   private validar(campo : any): boolean{
-    if(1== 1){
+    if(!campo){
       console.log(campo)
       return false
     }else{
