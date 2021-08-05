@@ -7,8 +7,7 @@ export class Contato {
     constructor(nome: string, telefone:number, dataNascimento:string, sexo:string){
         this.nome = nome
         this.telefone = telefone
-        this.dataNascimento = dataNascimento
-        this.sexo = sexo
+        this.dataNascimento = dataNascimento.split('T')[0]
     }
 
     public getNome() : string{

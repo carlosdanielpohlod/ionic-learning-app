@@ -15,20 +15,26 @@
       
   
         <ion-item>
-          <ion-col size="3">
+          <ion-col size="2">
             <ion-avatar>
               <img style="width:50px; height:50px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoG3kdyXjfH5Gc_RET0AcADVWUoZXQ4WestA&usqp=CAU">
             </ion-avatar> 
           </ion-col>
-          <ion-col size="3">
-            {{ contato.getNome()}}
+          <ion-col size="4">
+            <ion-row>
+              {{ contato.getNome()}} 
+            </ion-row>
+            <ion-row>
+              {{contato.getDataNascimento().split('T')[0]}}
+            </ion-row>
+            
           </ion-col>
-
+         
           <ion-col size="2">
             <ion-button color="secondary">Ver</ion-button>
           </ion-col>
 
-          <ion-col size="3">
+          <ion-col size="2">
             <ion-button color="danger">Deletar</ion-button>
           </ion-col>
         </ion-item>
@@ -47,7 +53,7 @@
     
     </ion-item-group>
   </ion-list>
-  
+
   <ion-fab vertical="center" horizontal="end" slot="fixed">
     <ion-fab-button (click)="irParaCadastrarPage()">
       <ion-icon name="add"></ion-icon>

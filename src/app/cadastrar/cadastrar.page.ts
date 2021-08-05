@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import {RegisterAlert} from '../alerts/registerAlert'
 import { Router } from '@angular/router';
 import { Contato } from '../class/Contato';
 import { ContatoService } from '../services/contato.service';
@@ -11,15 +11,19 @@ import { ContatoService } from '../services/contato.service';
   styleUrls: ['./cadastrar.page.scss'],
 })
 export class CadastrarPage implements OnInit {
-  public nome: string;
+    public nome: string;
     public telefone: number;
     public dataNascimento : string;
     public sexo : string;
+    private alert : RegisterAlert
   constructor(
     
-    public alertController : AlertController,
+    
     private router : Router,
-    private contatoService : ContatoService) {}
+    private contatoService : ContatoService) {
+      this.alert = new RegisterAlert();
+
+    }
 
   ngOnInit() {
   }
@@ -29,12 +33,12 @@ export class CadastrarPage implements OnInit {
      
       this.contatoService.cadastrar(new Contato(this.nome, this.telefone, this.dataNascimento, this.sexo))
 
-      this.presentAlert("menssagem",'Sucesso',"cadastrado")
+      this.alert.success()
       this.router.navigate(['home'])
         
       
     }else{
-      this.presentAlert("Erro ao salvar contato",'',"preencha todos os campos")
+      this.alert.error()
     }
   }
 
@@ -50,21 +54,7 @@ export class CadastrarPage implements OnInit {
   private voltar() :void{
     this.router.navigate(['home'])
   }
-  async presentAlert(header:string, subHeader:string, message:string) {
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      header: header,
-      subHeader: subHeader,
-      message: message,
-      buttons: ['OK']
-    });
-
-    await alert.present();
-
-    const { role } = await alert.onDidDismiss();
-    
-  }
-
+ 
 
 
 }

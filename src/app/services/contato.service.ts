@@ -5,7 +5,10 @@ import {Contato} from '../class/Contato'
 })
 export class ContatoService {
   private contatos : Contato[] = []
-  constructor() { }
+  constructor() { 
+
+    this.contatos.push(new Contato("Carlos Daniel",40028922,"30/11/1999","m"))
+  }
 
   public getContatos() : Contato[]{
     
