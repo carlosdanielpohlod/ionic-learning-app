@@ -1,29 +1,78 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>detalhar</ion-title>
-   
+    <ion-buttons slot="start">
+      <ion-button (click) = "home()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      
+      </ion-button>
+    </ion-buttons>
+    
+
+    <ion-title>Novo contato</ion-title>
+    <ion-buttons  slot="end">
+      <ion-button [disabled] = "editar" (click) = "editarContato()">
+     
+        <ion-icon large name="save-outline" ></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
   </ion-toolbar>
+  
 </ion-header>
 
 <ion-content>
   <ion-item-group>  
     <ion-item>
-      <ion-label>Editar</ion-label>
+      <ion-label>Habilitar editação</ion-label>
       <ion-toggle (ionChange)="alterarEdicao()" ></ion-toggle>
     </ion-item>
-    <ion-item> 
-      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.nome"> </ion-input>
-    </ion-item>
-    <ion-item> 
-      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.sexo"> </ion-input>
-    </ion-item>
-    <ion-item> 
-      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.dataNascimento"> </ion-input>
-    </ion-item>
-    <ion-item> 
-      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.telefone"> </ion-input>
-    </ion-item>
-    <ion-button color="danger">Deletar</ion-button>
-    <ion-button [disabled] = "editar" color="success" (click)="editarContato()">Editar</ion-button>
+    <ion-card>
+
+      <ion-list>
+        <ion-item>
+          
+          <ion-label position="floating" ><ion-icon name="person-outline"></ion-icon> Nome</ion-label>
+          <ion-input [disabled] = "editar" type="text" [(ngModel)]="contatoEditado.nome"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label position="floating" > <ion-icon name="call-outline"></ion-icon> Telefone</ion-label>
+          <ion-input [disabled] = "editar" type="number" [(ngModel)]="contatoEditado.telefone"></ion-input>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label><ion-icon name="transgender-outline"></ion-icon>Genero</ion-label>
+          
+          <ion-select [disabled] = "editar" placeholder="Selecionar" [(ngModel)] = "contatoEditado.sexo">
+            <ion-select-option value="f">Mulher</ion-select-option>
+            <ion-select-option value="m">Homem</ion-select-option>
+            <ion-select-option value="o">Outro</ion-select-option>
+          </ion-select>
+        </ion-item>
+  
+        <ion-item>
+          <ion-label><ion-icon name="calendar-outline"></ion-icon> Data de nascimento</ion-label>
+          <ion-datetime  
+          [disabled] = "editar"
+            display-timezone="utc"
+            displayFormat="MMMM YY"   
+            displayFormat="DDD. MMM DD, YY" 
+            min="1989-06-04"  
+            [(ngModel)] ="contatoEditado.dataNascimento"
+            monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
+            >
+          </ion-datetime>
+        </ion-item>
+      
+  
+      </ion-list>
+    </ion-card>
+    <ion-row>
+      <ion-col cols="4">
+        <ion-button color="danger"><ion-icon name="trash-outline"></ion-icon> Deletar</ion-button>
+      </ion-col>
+      
+    </ion-row>
+    
   </ion-item-group>
 </ion-content>

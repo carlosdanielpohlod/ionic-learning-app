@@ -31,7 +31,9 @@ export class DetalharPage implements OnInit {
       this.router.navigate(['home'])
     }
   }
-
+  private home(){
+    this.router.navigate(['home'])
+  }
   async confirm() {
     const alert = await this.alertController.create({
       cssClass: 'my-custom-class',
