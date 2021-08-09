@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {RegisterAlert} from '../alerts/registerAlert'
+import {RegisterAlert} from '../../alerts/registerAlert'
 import { Router } from '@angular/router';
-import { Contato } from '../class/Contato';
-import { ContatoService } from '../services/contato.service';
+import { Contato } from '../../class/Contato';
+import { ContatoService } from '../../services/contato.service';
 
 
 @Component({

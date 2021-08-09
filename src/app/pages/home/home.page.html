@@ -14,7 +14,7 @@
     <ion-item-group *ngFor= "let contato of contatos">
       
   
-        <ion-item>
+        <ion-item >
           <ion-col size="2">
             <ion-avatar>
               <img style="width:50px; height:50px"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoG3kdyXjfH5Gc_RET0AcADVWUoZXQ4WestA&usqp=CAU">
@@ -31,7 +31,7 @@
           </ion-col>
          
           <ion-col size="2">
-            <ion-button color="secondary">Ver</ion-button>
+            <ion-button (click)="detalhar(contato)" color="secondary">Ver</ion-button>
           </ion-col>
 
           <ion-col size="2">

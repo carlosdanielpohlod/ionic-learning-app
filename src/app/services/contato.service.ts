@@ -19,4 +19,25 @@ export class ContatoService {
     this.contatos.push(contato)
     console.log(this.contatos)
   }
+
+  public editar(contato: Contato, contatoEditado : Contato): boolean{
+    for(let i = 0;  i < this.contatos.length; i++){
+      if((this.contatos[i].getId() == contato.getId())){
+        this.contatos[i].setNome(contatoEditado.getNome())
+        this.contatos[i].setSexo(contatoEditado.getSexo())
+        this.contatos[i].setDataNascimento(contatoEditado.getDataNascimento())
+        this.contatos[i].setTelefone(contatoEditado.getTelefone())
+        return true
+      }
+    }
+    return false
+  }
+
+  public excluir(contato : Contato) {
+    for(let i = 0;  i < this.contatos.length; i++){
+      if((this.contatos[i].getId() == contato.getId())){
+
+      }
+    }
+  }
 }

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detalhar</ion-title>
+   
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item-group>  
+    <ion-item>
+      <ion-label>Editar</ion-label>
+      <ion-toggle (ionChange)="alterarEdicao()" ></ion-toggle>
+    </ion-item>
+    <ion-item> 
+      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.nome"> </ion-input>
+    </ion-item>
+    <ion-item> 
+      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.sexo"> </ion-input>
+    </ion-item>
+    <ion-item> 
+      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.dataNascimento"> </ion-input>
+    </ion-item>
+    <ion-item> 
+      <ion-input [disabled] = "editar" [(ngModel)]="contatoEditado.telefone"> </ion-input>
+    </ion-item>
+    <ion-button color="danger">Deletar</ion-button>
+    <ion-button [disabled] = "editar" color="success" (click)="editarContato()">Editar</ion-button>
+  </ion-item-group>
+</ion-content>
