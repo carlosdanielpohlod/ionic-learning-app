@@ -21,6 +21,7 @@ export class ContatoService {
   }
 
   public editar(contato: Contato, contatoEditado : Contato): boolean{
+    console.log(contato, contatoEditado)
     for(let i = 0;  i < this.contatos.length; i++){
       if((this.contatos[i].getId() == contato.getId())){
         this.contatos[i].setNome(contatoEditado.getNome())

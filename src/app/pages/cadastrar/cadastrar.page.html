@@ -3,16 +3,9 @@
     <ion-buttons slot="start">
       <ion-button (click) = "voltar()">
         <ion-icon name="backspace-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
       
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons  slot="end">
-      <ion-button (click) = "cadastrar()">
-     
-        <ion-icon large name="save-outline" ></ion-icon>
-      </ion-button>
-    </ion-buttons>
-
     <ion-title>Novo contato</ion-title>
   </ion-toolbar>
   
@@ -23,41 +16,60 @@
   <ion-card>
 
     <ion-list>
-      <ion-item>
-        
-        <ion-label position="floating" ><ion-icon name="person-outline"></ion-icon> Nome</ion-label>
-        <ion-input type="text" [(ngModel)]="nome"></ion-input>
-      </ion-item>
+      <form [formGroup]="formCadastrar" (ngSubmit)="submitForm()" novalidate>
+        <ion-item>
+          
+          <ion-label position="floating" ><ion-icon name="person-outline"></ion-icon> Nome</ion-label>
+          <ion-input type="text" formControlName="nome"></ion-input>
+          <span *ngIf="isSubmitted && errorControl.nome.errors?.required">
+            Nome é obrigatório
+          </span>
+        </ion-item>
 
-      <ion-item>
-        <ion-label position="floating" > <ion-icon name="call-outline"></ion-icon> Telefone</ion-label>
-        <ion-input type="number" [(ngModel)]="telefone"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label position="floating" > <ion-icon name="call-outline"></ion-icon> Telefone</ion-label>
+          <ion-input 
+          [brmasker] = "{mask:'(00)00000-0000', len:14}"
+          type="tel" formControlName="telefone"></ion-input>
+          <span *ngIf="isSubmitted && errorControl.telefone.errors?.required">
+            Telefone é obrigatório
+          </span>
+        </ion-item>
 
-      <ion-item>
-        <ion-label><ion-icon name="transgender-outline"></ion-icon>Genero</ion-label>
-        
-        <ion-select placeholder="Selecionar" [(ngModel)] = "sexo">
-          <ion-select-option value="f">Mulher</ion-select-option>
-          <ion-select-option value="m">Homem</ion-select-option>
-          <ion-select-option value="o">Outro</ion-select-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label><ion-icon name="transgender-outline"></ion-icon>Genero</ion-label>
+          
+          <ion-select placeholder="Selecionar" formControlName = "sexo">
+            <ion-select-option value="f">Mulher</ion-select-option>
+            <ion-select-option value="m">Homem</ion-select-option>
+            <ion-select-option value="o">Outro</ion-select-option>
+          </ion-select>
+          <span *ngIf="isSubmitted && errorControl.sexo.errors?.required">
+            Sexo é obrigatório
+          </span>
+        </ion-item>
 
-      <ion-item>
-        <ion-label><ion-icon name="calendar-outline"></ion-icon> Data de nascimento</ion-label>
-        <ion-datetime  
-          display-timezone="utc"
-          displayFormat="MMMM YY"   
-          displayFormat="DDD. MMM DD, YY" 
-          min="1989-06-04"  
-          [(ngModel)] ="dataNascimento"
-          monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
-          >
-        </ion-datetime>
-      </ion-item>
-    
-
+        <ion-item>
+          <ion-label><ion-icon name="calendar-outline"></ion-icon> Data de nascimento</ion-label>
+          <ion-datetime  
+            display-timezone="utc"
+            displayFormat="MMMM YY"   
+            displayFormat="DDD. MMM DD, YY" 
+            min="1989-06-04"  
+            formControlName ="dataNascimento"
+            monthShortformControlNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
+            >
+          </ion-datetime>
+          <span *ngIf="isSubmitted && errorControl.dataNascimento.errors?.required">
+            Data de nascimento é obrigatório
+          </span>
+        </ion-item>
+        <ion-button  type="submit">
+          <ion-icon large name="save-outline" ></ion-icon>
+          Salvar
+        </ion-button>
+      
+      </form>
     </ion-list>
   </ion-card>
 </ion-content>

@@ -8,13 +8,8 @@
     </ion-buttons>
     
 
-    <ion-title>Novo contato</ion-title>
-    <ion-buttons  slot="end">
-      <ion-button [disabled] = "editar" (click) = "editarContato()">
-     
-        <ion-icon large name="save-outline" ></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Ver contato</ion-title>
+
 
   </ion-toolbar>
   
@@ -22,57 +17,82 @@
 
 <ion-content>
   <ion-item-group>  
+    
+
     <ion-item>
       <ion-label>Habilitar editação</ion-label>
       <ion-toggle (ionChange)="alterarEdicao()" ></ion-toggle>
     </ion-item>
     <ion-card>
 
-      <ion-list>
+      <form [formGroup]="formDetalhar" (ngSubmit)="editarContato()" novalidate>
         <ion-item>
           
           <ion-label position="floating" ><ion-icon name="person-outline"></ion-icon> Nome</ion-label>
-          <ion-input [disabled] = "editar" type="text" [(ngModel)]="contatoEditado.nome"></ion-input>
+          <ion-input disabled="{{editar}}"  type="text" formControlName="nome"></ion-input>
+          <span *ngIf="isSubmitted && errorControl.nome.errors?.required">
+            Nome é obrigatório
+          </span>
         </ion-item>
-  
+
         <ion-item>
           <ion-label position="floating" > <ion-icon name="call-outline"></ion-icon> Telefone</ion-label>
-          <ion-input [disabled] = "editar" type="number" [(ngModel)]="contatoEditado.telefone"></ion-input>
+          <ion-input disabled="{{editar}}" type="tel" formControlName="telefone" [brmasker] = "{mask:'(00)00000-0000', len:14}"></ion-input>
+          <span *ngIf="isSubmitted && errorControl.telefone.errors?.required">
+            Telefone é obrigatório
+          </span>
         </ion-item>
-  
+
         <ion-item>
           <ion-label><ion-icon name="transgender-outline"></ion-icon>Genero</ion-label>
           
-          <ion-select [disabled] = "editar" placeholder="Selecionar" [(ngModel)] = "contatoEditado.sexo">
+          <ion-select disabled="{{editar}}" placeholder="Selecionar" formControlName = "sexo">
             <ion-select-option value="f">Mulher</ion-select-option>
             <ion-select-option value="m">Homem</ion-select-option>
             <ion-select-option value="o">Outro</ion-select-option>
           </ion-select>
+          <span *ngIf="isSubmitted && errorControl.sexo.errors?.required">
+            Sexo é obrigatório
+          </span>
         </ion-item>
-  
+
         <ion-item>
           <ion-label><ion-icon name="calendar-outline"></ion-icon> Data de nascimento</ion-label>
-          <ion-datetime  
-          [disabled] = "editar"
+          <ion-datetime 
+            disabled="{{editar}}" 
             display-timezone="utc"
             displayFormat="MMMM YY"   
             displayFormat="DDD. MMM DD, YY" 
             min="1989-06-04"  
-            [(ngModel)] ="contatoEditado.dataNascimento"
-            monthShortNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
+            formControlName ="dataNascimento"
+            monthShortformControlNames="jan, fev, mar, abr, mai, jun, jul, ago, set, out, nov, dez"
             >
           </ion-datetime>
+          <span *ngIf="isSubmitted && errorControl.dataNascimento.errors?.required">
+            Data de nascimento é obrigatório
+          </span>
         </ion-item>
-      
-  
-      </ion-list>
+        <ion-row>
+          <ion-col cols="4">
+            <ion-button disabled="{{editar}}" type="submit">
+                <ion-icon large name="save-outline" ></ion-icon>
+                Salvar
+            </ion-button>
+          </ion-col>
+       
+          <ion-col cols="4">
+            <ion-button color="danger"><ion-icon name="trash-outline"></ion-icon> Deletar</ion-button>
+          </ion-col>
+          
+        </ion-row>
+      </form>
+
+    
+    
+
+
     </ion-card>
-    <ion-row>
-      <ion-col cols="4">
-        <ion-button color="danger"><ion-icon name="trash-outline"></ion-icon> Deletar</ion-button>
-      </ion-col>
-      
-    </ion-row>
+    
     
   </ion-item-group>
 </ion-content>
