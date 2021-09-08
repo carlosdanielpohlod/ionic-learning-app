@@ -1,6 +1,6 @@
 import { AlertController } from '@ionic/angular';
 
-export class RegisterAlert {
+export class GenericAlert {
     public alertController : AlertController = new AlertController()
     
 

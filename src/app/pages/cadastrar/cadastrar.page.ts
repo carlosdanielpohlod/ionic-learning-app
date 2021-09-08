@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {RegisterAlert} from '../../alerts/registerAlert'
+import {GenericAlert} from '../../alerts/genericAlert'
 import { Router } from '@angular/router';
 import { Contato } from '../../class/Contato';
 import { ContatoService } from '../../services/contato.service';
@@ -13,7 +13,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CadastrarPage implements OnInit {
     
-    private alert : RegisterAlert
+    private alert : GenericAlert
     private formCadastrar: FormGroup
     private isSubmitted : boolean = false
   constructor(
@@ -22,7 +22,7 @@ export class CadastrarPage implements OnInit {
     private router : Router,
     private contatoService : ContatoService,
     private formBuilder : FormBuilder) {
-      this.alert = new RegisterAlert();
+      this.alert = new GenericAlert();
 
     }
 
