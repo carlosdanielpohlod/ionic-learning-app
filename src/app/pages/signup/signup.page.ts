@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { GenericAlert } from 'src/app/alerts/genericAlert';
+import { AuthServiceService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-signup',
@@ -16,8 +17,8 @@ export class SignupPage implements OnInit {
   constructor(
     public alertController : AlertController,
     public router : Router,
-    public formBuilder : FormBuilder
-    
+    public formBuilder : FormBuilder,
+    public authServiceService : AuthServiceService
     ) {
       this.genericAlert = new GenericAlert()
      }
@@ -37,8 +38,20 @@ export class SignupPage implements OnInit {
   private _signUp() : void{
     console.log(this._formCadastrar.value['email'])
     console.log(this._formCadastrar.value['senha'])
-    this.genericAlert.success('Cadastro','Sucesso')
-    this.router.navigate(['home'])
+    
+    this.authServiceService.signUpWithEmailAndPass(
+      this._formCadastrar.value['email'],
+      this._formCadastrar.value['senha']
+    )
+    .then(() => {
+      this.genericAlert.success('Cadastro','Sucesso')
+      this.router.navigate(['signin'])
+    })
+    .catch((error) => {
+      this.genericAlert.error()
+      console.log(error)
+    })
+    
   }
 
   submitForm(){

@@ -1,5 +1,7 @@
 {
   "name": "agendaContatos",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
